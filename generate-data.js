@@ -11,12 +11,31 @@ module.exports = () => {
     vip: Math.random() >= 0.5
   };
 
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
+  function getCurrency() {
+    switch (getRandomInt(1, 4)) {
+      case 1:
+        return "£";
+      case 2:
+        return "$";
+      case 3:
+        return "€";
+      case 4:
+        return "¥";
+    }
+  }
+
   const order = {
     id: String(Math.random() * 1000),
     items: [],
     datePlaced: new Date(Date.now()),
-    total: Math.floor(Math.random() * 6) + 1,
-    currency: "GBP",
+    total: getRandomInt(1000, 50000),
+    currency: getCurrency(),
     shippingOption: "Basic",
     payment: "Credit Card",
     deliveryCountry: "UK"
