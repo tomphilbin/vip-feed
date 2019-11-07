@@ -14,7 +14,7 @@ module.exports = () => {
   const order = {
     id: String(Math.random() * 1000),
     items: [],
-    datePlaced: Date.now(),
+    datePlaced: new Date(Date.now()),
     total: Math.floor(Math.random() * 6) + 1,
     currency: "GBP",
     shippingOption: "Basic",
