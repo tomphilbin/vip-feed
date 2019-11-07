@@ -1,12 +1,14 @@
-var app = require("express")();
-var http = require("http").createServer(app);
-var io = require("socket.io")(http);
+const app = require("express")();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
 
-io.on("connection", function(socket) {
-  console.log("a user connected");
-});
+const generateData = require("./generate-data");
 
-setInterval(() => io.emit("HighValueOrder", "HELLO WORLD"), 5000);
+setInterval(() => {
+  const highValueOrder = generateData();
+  io.emit("HighValueOrder", highValueOrder);
+  console.log(JSON.stringify(highValueOrder));
+}, 5000);
 
 http.listen(3000, function() {
   console.log("listening on *:3000");
